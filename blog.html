@@ -1,0 +1,41 @@
+<?php require('includes/config.php'); ?>
+<?php
+$page = 'blog';
+$message_title = 'Akin\'s Blog';
+$message = 'I write tutorials,case studies and opinion of things here';
+ include('head.html'); ?>
+		<!-- Banner -->
+			<section>
+			
+	<div class="col-md-3"></div>
+	<div class="col-md-6 blogpage" >
+		<hr />
+		<?php
+			try {
+
+				$stmt = $db->query('SELECT postID, postTitle, postDesc, postDate FROM blog_posts ORDER BY postID DESC');
+				while($row = $stmt->fetch()){
+					
+					$urlwords = shorten_words($row['postTitle'],10);
+					$urlwords = code($urlwords,'up');
+		 
+					echo '<div class="bloglist">';
+						echo '<h1><a href="http://'.$site_address.'/'.$row['postID'].'/'.$urlwords.'">'.$row['postTitle'].'</a></h1>';
+						echo '<p class="blogtext">Posted on '.date('jS M Y H:i:s', strtotime($row['postDate'])).'</p>';
+						echo '<p>'.$row['postDesc'].'</p>';				
+						echo '<p><a href="http://'.$site_address.'/'.$row['postID'].'/'.$urlwords.'">Read More</a>';				
+					echo '</div>';
+
+
+				}
+
+			} catch(PDOException $e) {
+			    echo $e->getMessage();
+			}
+			
+			
+		?>
+
+	</div>
+		</section>
+  <?php include('foot.html'); ?>

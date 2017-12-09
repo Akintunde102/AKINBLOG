@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title><?php if (!empty($row['postTitle'])){echo $row['postTitle'].' by Akintunde Jegede';} ?></title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="<?php if (!empty($row['postDesc'])){echo $row['postDesc'];} ?>" />
+		<meta name="keywords" content="<?php if (!empty($row['postTags'])){echo $row['postTags'];} ?>" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		
+		
+	 <link href="http://<?=$site_address?>/css/bootstrap.min.css" rel="stylesheet">
+
+	   <link href="http://<?=$site_address?>/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://<?=$site_address?>/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="http://<?=$site_address?>/css/custom.css" rel="stylesheet">
+    <link href="http://<?=$site_address?>/css/icheck/flat/green.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://<?=$site_address?>/css/progressbar/bootstrap-progressbar-3.3.0.css">
+  
+			<link rel="stylesheet" href="http://<?=$site_address?>/css/skel.css" />
+			<link rel="stylesheet" href="http://<?=$site_address?>/css/style.css" />
+			<link rel="stylesheet" href="http://<?=$site_address?>/css/style-wide.css" />
+	
+	
+
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+<script src="http://<?=$site_address?>/js/jquery.min.js"></script>
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<!-- Logo 
+					<h1><a href="index.html" id="logo">Akin.Com.Ng <em>by <span style="border-bottom: 2px solid #000;">Jegede Akintunde</span></em></a></h1>
+-->
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>		
+							<li <?php if ($page == 'index'){echo 'class="current"';} ?> ><a href="http://<?=$site_address?>/index.html">Home</a></li>
+							<li <?php if ($page == 'wd'){echo 'class="current"';} ?> ><a href="http://<?=$site_address?>/wd.html">Works Done</a></li>
+							<li <?php if ($page == 'contact'){echo 'class="current"';} ?> ><a href="http://<?=$site_address?>/contact.html">Contact</a></li>
+							<li <?php if ($page == 'blog'){echo 'class="current"';} ?> ><a href="http://<?=$site_address?>/blog.html">Blog</a></li>
+						</ul>
+					</nav>
+
+			</div>

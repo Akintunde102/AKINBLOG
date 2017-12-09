@@ -1,0 +1,109 @@
+<?php require('includes/config.php');  
+$page = 'contact';
+$message_title = 'Contact me';
+$message_2 = '- Contact me<br/>- <i class="fa fa-smile-o"></i>Waiting to hear from you';
+$message = 'Send a message to me <u> and I\'ll get it instantly</u>';
+include('head.html'); 
+
+//For Mail
+	if (isset($_POST["submit"]) && empty($_POST["url"])) {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$msg = $_POST['message'];
+		$human = intval($_POST['human']);
+		$from = $email ; 
+		$to = 'jegedeakintunde@gmail.com'; 
+		$subject = 'QUOTEHOOD CONTACT ';
+		
+		$body ="From: $name\n E-Mail: $email\n Message:\n $msg";
+
+		// Check if name has been entered
+		if (!$_POST['name']) {
+			$errName = 'Please enter your name';
+		}
+		
+		// Check if email has been entered and is valid
+		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+			$errEmail = 'Please enter a valid email address';
+		}
+		
+		//Check if message has been entered
+		if (!$_POST['message']) {
+			$errMessage = 'Please enter your message';
+		}
+		//Check if simple anti-bot test is correct
+		if ($human !== 5) {
+			$errHuman = 'Your anti-spam is incorrect';
+		}
+
+// If there are no errors, send the email
+if (!@$errName && !@$errEmail && !@$errMessage && !@$errHuman) {
+	if (mail ($to, $subject, $body, $from)) {
+		$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+	} else {
+		$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later.</div>';
+	}
+}
+	}
+
+
+?>
+		<!-- Banner -->
+			<section id="banner" style="height: 750px">
+				<div class="row">
+			<div class="col-md-10">
+			<span class="mono-title"><?=$message_2?></span>
+			</div><div class="col-md-10">
+			<span class="mono-title"></span>
+			</div></div>
+			<div class="col-md-2"> </div>
+			<div class="col-md-8">
+			<div class="col-sm-2"></div>
+						<div class="col-sm-10">
+							<?php  if (!empty($result))echo $result; ?>	
+							</div>
+					<form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+					<div class="form-group">
+						<label for="name" class="col-sm-3 control-label">Name</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="name" name="name" placeholder="First Name" value="<?php if (!empty($_POST['name'])) echo htmlspecialchars($_POST['name']); ?>">
+							<?php if (!empty($errName))echo "<p class='text-danger'>$errName</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-3 control-label">Email</label>
+						<div class="col-sm-9">
+							<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php  if (!empty($_POST['email'])) echo htmlspecialchars($_POST['email']); ?>">
+							<?php if (!empty($errEmail))echo "<div class=\"alert alert-danger\"><p class='text-danger'>$errEmail</p></div>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="message" class="col-sm-3 control-label">Message</label>
+						<div class="col-sm-9">
+							<textarea class="form-control" rows="4" name="message"><?php  if (!empty($_POST['message']))echo htmlspecialchars($_POST['message']);?></textarea>
+							<?php if (!empty($errMessage))echo "<p class='text-danger'>$errMessage</p>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="human" class="col-sm-3 control-label">2 + 3 = ?</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+							
+							<?php if (!empty($errHuman))echo "<div class=\"alert alert-danger\"><p class='text-danger'>$errHuman</p></div>";?>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 col-sm-offset-3">
+							<input id="submit" name="submit" type="submit" value="Send" class="col-md-9 btn btn-primary btn btn-info btn-lg">
+						</div>
+					</div>
+					  <p class="antispam" >Leave this empty: <input type="text" name="url" /></p>
+					<div class="form-group">
+						<div class="col-sm-10 col-sm-offset-2">
+						</div>
+					</div>
+				</form> 
+	</div>
+
+			</section>
+  <?php include('foot.html'); ?>
