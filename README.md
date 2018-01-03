@@ -102,7 +102,6 @@ Installation is very easy. Just follow the following steps
 ![Preview](http://akin.com.ng/a.PNG)
 ![Preview](http://akin.com.ng/b.PNG)
 ![Preview](http://akin.com.ng/c.PNG)
-![Preview](https://steemitimages.com/0x0/https://res.cloudinary.com/hpiynhbhq/image/upload/v1514746056/slnxy3zsecywgqocdzmo.gif)
 
 
  
